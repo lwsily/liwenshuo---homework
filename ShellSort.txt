@@ -1,0 +1,44 @@
+Java - ShellSort - liwenshuo
+/* package whatever; // don't place package name! */
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+/* Name of the class has to be "Main" only if the class is public. */
+class ShellSort
+{
+	public void shellSort(int[] a){
+	int d=a.length;
+            while(true)
+            {
+                d=d/2;
+                for(int x=0;x<d;x++)
+                {
+                    for(int i=x+d;i<a.length;i=i+d)
+                    {
+                        int temp=a[i];
+                        int j;
+                        for(j=i-d;j>=0&&a[j]>temp;j=j-d)
+                        {
+                            a[j+d]=a[j];
+                        }
+                        a[j+d]=temp;
+                    }}
+                if(d==1)
+                {
+                    break;
+                }     }
+		for(int x=0;x<a.length;x++){
+		System.out.print(a[x]);
+		if(x!=a.length-1){
+			System.out.print(",");
+		}	}}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		ShellSort SS=new ShellSort();
+		int[] array={66,2,86,45,63,46,13,55};
+		System.out.println("Before Shell Sort:"+Arrays.toString(array));
+		System.out.print("After Shell Sort:");
+		SS.shellSort(array);
+	}
+}

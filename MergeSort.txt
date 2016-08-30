@@ -1,0 +1,69 @@
+Java - MergeSort - liwenshuo
+/* package whatever; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class MergeSort
+{
+	public static void merge(int[] a,int s,int m,int t){
+		int[] tmp=new int[t-s+1];
+		int i=s,j=m,k=0;
+		while(i<m&&j<=t){
+			if(a[i]<=a[j]){
+                tmp[k]=a[i];
+                k++;
+                i++;
+            }else{
+                tmp[k]=a[j];
+                j++;
+                k++;
+            }
+		}
+		while(i<m){
+            tmp[k]=a[i];
+            i++;
+            k++;
+        }
+        while(j<=t){
+            tmp[k]=a[j];
+            j++;
+            k++;
+        }
+        System.arraycopy(tmp,0,a,s,tmp.length);
+	}
+
+	public static void mergeSort(int[] a,int s,int len){
+        int size=a.length;
+        int mid=size/(len<<1);
+        int c=size&((len<<1)-1);
+        if(mid==0){
+        	return;
+        }
+        for(int i=0;i<mid;++i){
+            s=i*2*len;
+            merge(a,s,s+len,(len<<1)+s-1);
+        }
+        if(c!=0)
+            merge(a,size-c-2*len,size-c,size-1);
+        mergeSort(a,0,2*len);
+    }
+	
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		MergeSort MS=new MergeSort();
+		int[] array={66,2,86,45,63,46,13,55};
+		System.out.println("Before Merge Sort:"+Arrays.toString(array));
+		System.out.print("After Merge Sort:");
+		MS.mergeSort(array,0,1);
+        
+        for(int x=0;x<array.length;x++){
+		System.out.print(array[x]);
+		if(x!=array.length-1){
+			System.out.print(",");
+		}	}
+	}
+}
